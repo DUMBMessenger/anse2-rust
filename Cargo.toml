@@ -1,0 +1,16 @@
+[package]
+name = "anse2"
+description = "anse2 is custom cipher for dumb messenger"
+repository = ""
+license-file = "LICENSE.md"
+version = "0.1.0"
+edition = "2024"
+
+[lib]
+crate-type = ["cdylib"]
+
+[dependencies]
+wasm-bindgen = "0.2"
+
+[build-dependencies]
+cbindgen = "0.29.0"
