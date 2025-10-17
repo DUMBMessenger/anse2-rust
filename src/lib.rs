@@ -1,5 +1,6 @@
 use std::ffi::{c_char, c_int, CStr};
 use wasm_bindgen::prelude::*;
+use zeroize::Zeroize;
 
 static mut GF256_MUL2: [u8; 256] = [0; 256];
 static mut GF256_MUL3: [u8; 256] = [0; 256];
@@ -183,6 +184,11 @@ pub fn anse2_encrypt(input: &[u8], key: &str) -> Vec<u8> {
         shift_mix_rows(&mut state);
         i += block_len;
     }
+
+    state.zeroize();
+    prng_state.zeroize();
+    let mut kb_copy = kb;
+    kb_copy.zeroize();
 
     out
 }
